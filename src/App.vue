@@ -27,9 +27,11 @@ onMounted(() => {
   <form action="#">
   <div class="form-group">
   <label for="task" class="form-label">Add New Task</label>
-  <input type="text" class="form-control" id="task" placeholder="Enter Task">
+
+  <input v-model="todoStore.todoForm.title" type="text" class="form-control" id="task" placeholder="Enter Task">
   </div>
-  <input type="submit" class="btn btn-primary mt-3" value="Add Task">
+  <input type="submit" class="btn btn-primary mt-3" value="Add Task" 
+  @click.prevent="todoStore.addTodo">
 
   </form>
   </div>
@@ -39,9 +41,12 @@ onMounted(() => {
   <h4 class="text-danger">Task</h4>
   <ul class="list-group">
   <li v-for="todo in todoStore.todos" :key="todo.id" class="list-group-item d-flex justify-content-between align-items-center mb-3">
+  <div>
+  <input type="checkbox" class="form-check-input me-2" id="">  
   <span :class="todo.completed ? 'text-decoration-line-through': '' ">
   {{ todo.title }}
   </span>
+</div>
   <a href="" class="btn link-danger"><i class="fa-solid fa-xmark"></i></a>
   </li>
   
