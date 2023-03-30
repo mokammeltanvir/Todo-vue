@@ -1,4 +1,17 @@
 <script setup>
+/* Import All Libraries */
+import { onMounted } from "vue";
+import { useTodoStore } from "./stores/todo";
+
+/* Instance and variables */
+const todoStore = useTodoStore();
+
+/* Methods */
+
+/* Hooks, Computed, watch */
+onMounted(() => {
+  todoStore.getAllTodos();
+});
 
 </script>
 
@@ -25,15 +38,13 @@
   <div class="card-body">
   <h4 class="text-danger">Task</h4>
   <ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center mb-3">List Item
+  <li v-for="todo in todoStore.todos" :key="todo.id" class="list-group-item d-flex justify-content-between align-items-center mb-3">
+  <span :class="todo.completed ? 'text-decoration-line-through': '' ">
+  {{ todo.title }}
+  </span>
   <a href="" class="btn link-danger"><i class="fa-solid fa-xmark"></i></a>
   </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center  mb-3">List Item
-  <a href="" class="btn link-danger"><i class="fa-solid fa-xmark"></i></a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center  mb-3">List Item
-  <a href="" class="btn link-danger"><i class="fa-solid fa-xmark"></i></a>
-  </li>
+  
   
   </ul>
   </div>
